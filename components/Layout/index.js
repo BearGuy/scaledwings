@@ -6,7 +6,7 @@ export function Layout({ children }) {
     <div className="min-h-screen bg-raisinblack">
       <Head>
         <title>Scaledwings</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/dragon.png" />
       </Head>
       <main className="grid grid-cols-1 md:grid-cols-300-auto">
         <SideMenu />

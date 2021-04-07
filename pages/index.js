@@ -8,14 +8,7 @@ export default function Home({ posts }) {
   console.log({ posts })
   return (
     <Layout>
-      {/* <Head>
-        <title>Scaledwings</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className="grid grid-cols-1 md:grid-cols-300-auto">
-        <SideMenu /> */}
       <Content posts={posts} />
-      {/* </main> */}
     </Layout>
   )
 }

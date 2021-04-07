@@ -44,7 +44,7 @@ export const SideMenu = () => {
             </Link>
           </div>
         </div>
-        <h1 className="text-5xl text-celeste font-bold mt-5 text-center">Riya Patel</h1>
+        <h1 className="text-5xl text-celeste font-bold mt-5 text-center" style={{ fontFamily: `Times New Roman` }}>Riya Patel</h1>
         <p className="text-white mt-3 text-center">
           Hi folks 👋  I'm Riya! I'm an aprentice tattoo artist who appreciates colour and ✨ aesthetics ✨
         </p>

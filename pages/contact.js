@@ -18,7 +18,7 @@ export default function Contact() {
             <label className="text-lg text-white font-bold mb-2.5">Description</label>
             <textarea className="md:h-32" type="text" />
           </section>
-          <button className="bg-lightcoral text-white rounded-md" style={{ padding: `12px 15px`}}>
+          <button className="bg-cerise text-white rounded-md" style={{ padding: `12px 15px`}}>
             Submit
           </button>
         </form>

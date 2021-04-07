@@ -1,0 +1,66 @@
+import Link from 'next/link';
+import Image from 'next/image';
+
+import { useState } from 'react';
+
+export const SideMenu = () => {
+  const [show_mobile_dropdown, setShowMobileDropdown] = useState(false);
+  return (
+    <div className="flex flex-col md:h-screen w-full p-5 md:p-10">
+      <div className="justify-self-center">
+        {
+         !show_mobile_dropdown
+          ? <img
+            onClick={() => setShowMobileDropdown(!show_mobile_dropdown)}
+            src="/nav-hamburger.svg" style={{ width: 30, height: 30 }}
+            className="md:hidden"
+          />
+          :
+          <img
+            onClick={() => setShowMobileDropdown(!show_mobile_dropdown)}
+            src="/nav-close-icon.svg" style={{ width: 30, height: 30 }}
+            className="md:hidden"
+          />
+        }
+        {
+          <div className={`${!show_mobile_dropdown ? `hidden` : `visible`} fixed w-full bg-raisinblack left-0 z-10`}>
+            <ul>
+              <Link href="/about"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer p-2`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>About Me</li></Link>
+              <Link href="/"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer p-2`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>Gallery</li></Link>
+              <Link href="/contact"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer p-2`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>Contact Me</li></Link>
+            </ul>
+          </div>
+        }
+        <div className="rounded-full border-2 border-celeste overflow-hidden m-auto" style={{ width: 160, height: 160 }}>
+          <div className="cursor-pointer">
+            <Link href="/">
+              <Image
+                src={`/profile.jpg`}
+                width={160}
+                height={160}
+                layout={`intrinsic`}
+                objectFit={`cover`}
+              />
+            </Link>
+          </div>
+        </div>
+        <h1 className="text-5xl text-celeste font-bold mt-5 text-center">Riya Patel</h1>
+        <p className="text-white mt-3 text-center">
+          Hi folks 👋  I'm Riya! I'm an aprentice tattoo artist who appreciates colour and ✨ aesthetics ✨
+        </p>
+      </div>
+      <div className="hidden md:visible md:inline-block mt-10">
+        <ul>
+          <Link href="/about"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>About Me</li></Link>
+          <Link href="/"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>Gallery</li></Link>
+          <Link href="/contact"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>Contact Me</li></Link>
+        </ul>
+        <div className="flex justify-center mt-10">
+          <Link href="https://instagram.com/scaledwings">
+            <img src="/instagram-brands.svg" className="filter-white cursor-pointer" style={{ width: 35, height: 35 }} />
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}

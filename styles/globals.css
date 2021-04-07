@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #1D2434
+}
+
+.underline { text-decoration-color: #CCCFFF; text-decoration: underline; }
+
+.filter-white {
+  filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(178deg) brightness(105%) contrast(101%);
+}
+
+input {
+  width: 100%;
+  /* max-width: 350px; */
+  /* height: 45px; */
+  padding: 14px 15px 13px;
+  border: solid 1px #d5dae3;
+  border-radius: 6px;
+  background-color: white;
+  color: #8a94a9;
+}
+
+textarea {
+  width: 100%;
+  /* max-width: 350px; */
+  /* height: 45px; */
+  padding: 14px 15px 13px;
+  border: solid 1px #d5dae3;
+  border-radius: 6px;
+  background-color: white;
+  color: #8a94a9;
+}

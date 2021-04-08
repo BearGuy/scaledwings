@@ -67,16 +67,26 @@ export default function Post({ postData, prevId, nextId }) {
             : null
           }
         </div>
-        <Link href={`/posts/${prevId}`}>
-          <div className="md:hidden absolute rounded-full cursor-pointer" style={{ bottom: 20, left: 20 }}>
-            <img src="/left-arrow.svg" style={{ width: 50, height: 50 }} className="bg-white rounded-full border-2 border-white" />
-          </div>
-        </Link>
-        <Link href={`/posts/${nextId}`}>
-          <div className="md:hidden absolute rounded-full cursor-pointer" style={{ bottom: 20, right: 20 }}>
-            <img src="/right-arrow.svg" style={{ width: 50, height: 50 }} className="bg-white rounded-full border-2 border-white"/>
-          </div>
-        </Link>
+        {
+          prevId
+          ?
+          <Link href={`/posts/${prevId}`}>
+            <div className="md:hidden absolute rounded-full cursor-pointer" style={{ bottom: 20, left: 20 }}>
+              <img src="/left-arrow.svg" style={{ width: 50, height: 50 }} className="bg-white rounded-full border-2 border-white" />
+            </div>
+          </Link>
+          : null
+        }
+        {
+          nextId
+          ?
+          <Link href={`/posts/${nextId}`}>
+            <div className="md:hidden absolute rounded-full cursor-pointer" style={{ bottom: 20, right: 20 }}>
+              <img src="/right-arrow.svg" style={{ width: 50, height: 50 }} className="bg-white rounded-full border-2 border-white"/>
+            </div>
+          </Link>
+          : null
+        }
       </div>
     </Layout>
   )

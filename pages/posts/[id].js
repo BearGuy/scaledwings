@@ -154,8 +154,8 @@ export default function Post({ postData, prevPost, nextPost }) {
   const [show_hover, setShowHover] = useState(false);
   const [show_arrows, setShowArrows] = useState(false);
   return (
-    <Layout>
-      <div className="p-5 h-screen">
+    <Layout hide_menu={true}>
+      <div className="p-5 md:h-screen">
         <div
           className="relative h-full flex justify-center"
           onMouseOver={() => setShowArrows(true)}

@@ -61,6 +61,7 @@ module.exports = {
         '45-55': `45fr 55fr`,
         '460-440': `460px 440px`,
         '500-360': `500px 360px`,
+        '250-auto': `275px auto`,
         '300-auto': `300px auto`,
         'auto-140': `auto 145px`,
         'auto-250': `auto 250px`,

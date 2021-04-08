@@ -3,10 +3,10 @@ import Image from 'next/image';
 
 import { useState } from 'react';
 
-export const SideMenu = () => {
+export const SideMenu = ({ hide_menu }) => {
   const [show_mobile_dropdown, setShowMobileDropdown] = useState(false);
   return (
-    <div className="flex flex-col md:h-screen w-full p-5 md:p-10">
+    <div className="flex flex-col md:h-screen w-full p-5 md:py-10 md:px-5">
       <div className="justify-self-center">
         {
          !show_mobile_dropdown
@@ -31,7 +31,7 @@ export const SideMenu = () => {
             </ul>
           </div>
         }
-        <div className="rounded-full border-2 border-celeste overflow-hidden m-auto" style={{ width: 160, height: 160 }}>
+        <div className={`${hide_menu ? `hidden` : ``} rounded-full border-2 border-celeste overflow-hidden m-auto`} style={{ width: 160, height: 160 }}>
           <div className="cursor-pointer">
             <Link href="/">
               <Image
@@ -44,8 +44,8 @@ export const SideMenu = () => {
             </Link>
           </div>
         </div>
-        <h1 className="text-5xl text-celeste font-bold mt-5 text-center" style={{ fontFamily: `Times New Roman` }}>Riya Patel</h1>
-        <p className="text-white mt-3 text-center">
+        <h1 className={`${hide_menu ? `hidden` : ``} text-5xl text-celeste font-bold mt-5 text-center`} style={{ fontFamily: `Times New Roman` }}>Riya Patel</h1>
+        <p className={`${hide_menu ? `hidden` : ``} text-white mt-3 text-center`}>
           Hi folks 👋  I'm Riya! I'm an aprentice tattoo artist who appreciates colour and ✨ aesthetics ✨
         </p>
       </div>

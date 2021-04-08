@@ -6,12 +6,11 @@ export const Content = ({ posts }) => {
     <div className={`p-5 md:overflow-y-scroll h-screen`}>
       <div className={styles.masonry}>
         {
-          posts.map((post) => {
-            const id = post.url.split("/")[4]
+          posts.map((post, idx) => {
             return (
-              <Link href={`/posts/${id}`}>
+              <Link idx={idx} href={`/posts/${post.id}`}>
                 <div className={styles.item}>
-                  <img src={post.displayUrl} />
+                  <img src={post.url} />
                 </div>
               </Link>
             )

@@ -31,7 +31,7 @@ export const SideMenu = ({ hide_menu }) => {
             </ul>
           </div>
         }
-        <div className={`${hide_menu ? `hidden` : ``} rounded-full border-2 border-celeste overflow-hidden m-auto`} style={{ width: 160, height: 160 }}>
+        <div className={`${hide_menu ? `hidden md:block` : ``} rounded-full border-2 border-celeste overflow-hidden m-auto`} style={{ width: 160, height: 160 }}>
           <div className="cursor-pointer">
             <Link href="/">
               <Image
@@ -44,8 +44,8 @@ export const SideMenu = ({ hide_menu }) => {
             </Link>
           </div>
         </div>
-        <h1 className={`${hide_menu ? `hidden` : ``} text-5xl text-celeste font-bold mt-5 text-center`} style={{ fontFamily: `Times New Roman` }}>Riya Patel</h1>
-        <p className={`${hide_menu ? `hidden` : ``} text-white mt-3 text-center`}>
+        <h1 className={`${hide_menu ? `hidden md:block` : ``} text-5xl text-celeste font-bold mt-5 text-center`} style={{ fontFamily: `Times New Roman` }}>Riya Patel</h1>
+        <p className={`${hide_menu ? `hidden md:block` : ``} text-white mt-3 text-center`}>
           Hi folks 👋  I'm Riya! I'm an aprentice tattoo artist who appreciates colour and ✨ aesthetics ✨
         </p>
       </div>

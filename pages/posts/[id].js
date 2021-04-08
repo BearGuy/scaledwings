@@ -9,22 +9,30 @@ export default function Post({ postData, prevId, nextId }) {
   const [show_arrows, setShowArrows] = useState(false);
   return (
     <Layout hide_menu={true}>
-      <div className="p-5 md:h-screen">
+      <div className="px-5 md:p-5 md:h-screen">
         <div
           className="relative h-full flex justify-center"
           onMouseOver={() => setShowArrows(true)}
           onMouseLeave={() => setShowArrows(false)}
         >
+          <Link href="/">
+            <img
+              className="absolute filter-white left-0 cursor-pointer"
+              src="/back-arrow.svg"
+              style={{ width: 40, height: 40 }}
+            />
+          </Link>
           <img
             onMouseOver={() => setShowHover(true)}
             onMouseLeave={() => setShowHover(false)}
             src={postData.url}
+            className="mt-16 md:mt-10"
           />
           {
             show_arrows && prevId
             ?
               <Link href={`/posts/${prevId}`}>
-                <div className="absolute rounded-full cursor-pointer" style={{ top: `50%`, left: 0 }}>
+                <div className="hidden md:block absolute rounded-full cursor-pointer" style={{ top: `50%`, left: 0 }}>
                   <img src="/left-arrow.svg" style={{ width: 50, height: 50 }} className="bg-white rounded-full border-2 border-white" />
                 </div>
               </Link>
@@ -32,8 +40,9 @@ export default function Post({ postData, prevId, nextId }) {
           }
           {
             show_arrows && nextId
-            ? <Link href={`/posts/${nextId}`}>
-              <div className="absolute rounded-full cursor-pointer" style={{ top: `50%`, right: 0 }}>
+            ?
+            <Link href={`/posts/${nextId}`}>
+              <div className="hidden md:block absolute rounded-full cursor-pointer" style={{ top: `50%`, right: 0 }}>
                 <img src="/right-arrow.svg" style={{ width: 50, height: 50 }} className="bg-white rounded-full border-2 border-white"/>
               </div>
             </Link>
@@ -58,6 +67,16 @@ export default function Post({ postData, prevId, nextId }) {
             : null
           }
         </div>
+        <Link href={`/posts/${prevId}`}>
+          <div className="md:hidden absolute rounded-full cursor-pointer" style={{ bottom: 20, left: 20 }}>
+            <img src="/left-arrow.svg" style={{ width: 50, height: 50 }} className="bg-white rounded-full border-2 border-white" />
+          </div>
+        </Link>
+        <Link href={`/posts/${nextId}`}>
+          <div className="md:hidden absolute rounded-full cursor-pointer" style={{ bottom: 20, right: 20 }}>
+            <img src="/right-arrow.svg" style={{ width: 50, height: 50 }} className="bg-white rounded-full border-2 border-white"/>
+          </div>
+        </Link>
       </div>
     </Layout>
   )

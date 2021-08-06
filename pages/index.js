@@ -5,7 +5,6 @@ import Head from 'next/head'
 import axios from 'axios';
 
 export default function Home({ posts }) {
-  console.log({ posts })
   return (
     <Layout>
       <Content posts={posts} />

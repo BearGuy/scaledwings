@@ -14,8 +14,6 @@ body {
 
 input {
   width: 100%;
-  /* max-width: 350px; */
-  /* height: 45px; */
   padding: 14px 15px 13px;
   border: solid 1px #d5dae3;
   border-radius: 6px;
@@ -25,8 +23,6 @@ input {
 
 textarea {
   width: 100%;
-  /* max-width: 350px; */
-  /* height: 45px; */
   padding: 14px 15px 13px;
   border: solid 1px #d5dae3;
   border-radius: 6px;

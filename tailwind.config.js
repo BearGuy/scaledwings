@@ -81,6 +81,10 @@ module.exports = {
   },
   variants: {
     margin: ['responsive', 'first', 'last'],
+    extend: {
+      backgroundColor: ['disabled'],
+      opactiy: ['disabled'],
+    }
   },
   plugins: [],
 }

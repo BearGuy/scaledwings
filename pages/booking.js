@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link'
 import { Layout } from '../components/Layout'
 import Dropzone from 'react-dropzone'
 import { initializeApp } from "firebase/app"
@@ -26,6 +27,7 @@ export default function Booking() {
   const [files, setFiles] = useState([]);
   const [description, setDescription] = useState();
 
+  const [isRequesting, setIsRequesting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const isDisabled = (
@@ -65,6 +67,8 @@ export default function Booking() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    setIsRequesting(true);
 
     // upload our files to firebase first;
     const storage = getStorage(firebase);
@@ -115,6 +119,7 @@ export default function Booking() {
       }
     );
 
+    setIsRequesting(false);
     setIsSubmitted(true);
   }
 
@@ -145,6 +150,21 @@ export default function Booking() {
           <p className="text-center text-xl text-lavenderblue font-bold mt-5">
             Your Request Was Sent! Expect To Hear Back From Me Soon 😄
           </p>
+          <div className="text-center">
+            <Link href="/">
+              <p className="text-xl text-celeste font-bold mt-5 underline">Return to Gallery</p>
+            </Link>
+          </div>
+        </div>
+      </Layout>
+    )
+  }
+
+  if (isRequesting) {
+    return (
+      <Layout>
+        <div className="md:my-10 p-5 w-full md:w-1/2 min-w-lg m-auto flex items-center justify-center">
+          <div className="loader"></div>
         </div>
       </Layout>
     )

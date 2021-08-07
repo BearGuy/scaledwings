@@ -84,6 +84,7 @@ module.exports = {
     extend: {
       backgroundColor: ['disabled'],
       opactiy: ['disabled'],
+      cursor: ['disabled'],
     }
   },
   plugins: [],

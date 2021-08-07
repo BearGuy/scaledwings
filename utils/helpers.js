@@ -8,3 +8,7 @@ export const truncate = (input, length) => {
   else
     return input;
 };
+
+export const validateEmail = (address) => {
+  return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(address))
+}

@@ -8,7 +8,7 @@ export const Content = ({ posts }) => {
         {
           posts.map((post, idx) => {
             return (
-              <Link idx={idx} href={`/posts/${post.id}`}>
+              <Link idx={idx} key={idx} href={`/posts/${post.id}`}>
                 <div className={styles.item}>
                   <img src={post.url} />
                 </div>

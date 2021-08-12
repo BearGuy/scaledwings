@@ -207,7 +207,7 @@ export default function Booking() {
             </div>
           </section>
           <section>
-            <label className="text-lg text-white font-bold mb-2.5 flex justify-between">
+            <label className="text-lg text-white font-bold flex justify-between">
               Email
               {
                 isInvalidEmail

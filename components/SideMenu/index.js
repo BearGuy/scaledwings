@@ -46,7 +46,7 @@ export const SideMenu = ({ hide_menu }) => {
         </div>
         <h1 className={`${hide_menu ? `hidden md:block` : ``} text-5xl text-celeste font-bold mt-5 text-center`} style={{ fontFamily: `Times New Roman` }}>Riya Patel</h1>
         <p className={`${hide_menu ? `hidden md:block` : ``} text-white mt-3 text-center`}>
-          Hi folks 👋  I'm Riya! I'm an aprentice tattoo artist who appreciates colour and ✨ aesthetics ✨
+          Hi there, I'm Riya 👋  I'm an apprentice tattoo artist and watercolour painter based in Ottawa
         </p>
       </div>
       <div className="hidden md:visible md:inline-block mt-10">
@@ -58,6 +58,9 @@ export const SideMenu = ({ hide_menu }) => {
         <div className="flex justify-center mt-10">
           <Link href="https://instagram.com/scaledwings">
             <img src="/instagram-brands.svg" className="filter-white cursor-pointer" style={{ width: 35, height: 35 }} />
+          </Link>
+          <Link href="https://tiktok.com/@scaledwings">
+            <img src="/tiktok-icon-white.svg" className="cursor-pointer" style={{ marginLeft: 10, width: 35, height: 35 }} />
           </Link>
         </div>
       </div>

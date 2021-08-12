@@ -169,7 +169,7 @@ export default function Booking() {
       <Layout>
         <div className="md:my-10 p-5 w-full md:w-1/2 min-w-lg m-auto">
           <p className="text-center text-xl text-lavenderblue font-bold mt-5">
-            Your Request Was Sent! Expect To Hear Back From Me Soon 😄
+            Your Request Was Sent! Expect To Hear Back From Me Soon
           </p>
           <div className="text-center">
             <Link href="/">

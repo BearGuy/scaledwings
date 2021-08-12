@@ -26,7 +26,7 @@ export default function Post({ postData, prevId, nextId }) {
             onMouseOver={() => setShowHover(true)}
             onMouseLeave={() => setShowHover(false)}
             src={postData.url}
-            className="mt-16 md:mt-10"
+            className="mt-16 md:mt-10 object-contain"
           />
           {
             show_arrows && prevId

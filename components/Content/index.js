@@ -16,7 +16,7 @@ export const Content = ({ posts }) => {
                       src={post.url}
                       className={`${styles.custom_img}`}
                       layout="fill"
-                      quality="5"
+                      quality="1"
                     />
                   </div>
                 </div>

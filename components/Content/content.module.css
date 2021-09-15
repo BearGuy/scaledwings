@@ -49,3 +49,17 @@
 .item img:hover {
   border: 4px solid #CCCFFF;
 }
+
+.custom_img {
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+}
+
+.unset_img {
+  width: 100%;
+}
+.unset_img > div {
+  position: unset !important;
+}

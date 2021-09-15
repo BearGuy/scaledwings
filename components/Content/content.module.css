@@ -63,3 +63,7 @@
 .unset_img > div {
   position: unset !important;
 }
+
+.unset_img > div > div {
+  padding-top: unset !important;
+}

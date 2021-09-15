@@ -15,7 +15,10 @@ export const Content = ({ posts }) => {
                     <Image
                       src={post.url}
                       className={`${styles.custom_img}`}
-                      layout="fill"
+                      height={200}
+                      width={250}
+                      // layout="fill"
+                      layout="responsive"
                       quality="1"
                     />
                   </div>

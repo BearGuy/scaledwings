@@ -46,7 +46,7 @@ export const SideMenu = ({ hide_menu }) => {
         </div>
         <h1 className={`${hide_menu ? `hidden md:block` : ``} text-5xl text-celeste font-bold mt-5 text-center`} style={{ fontFamily: `Times New Roman` }}>Riya Patel</h1>
         <p className={`${hide_menu ? `hidden md:block` : ``} text-white mt-3 text-center`}>
-          Hi there, I'm Riya 👋  I'm an apprentice tattoo artist and watercolour painter based in Ottawa
+          Hi there, I'm Riya. I'm an apprentice tattoo artist and watercolour painter based in Ottawa
         </p>
       </div>
       <div className="hidden md:visible md:inline-block mt-10">

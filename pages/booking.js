@@ -13,7 +13,6 @@ const PER_HOUR_COST = 100; // in USD
 
 /*
   We want to get this information from people
-
   1. Firstname Lastname (text)
   2. Email (email)
   3. Placement on body (be as specific as possible) (text)

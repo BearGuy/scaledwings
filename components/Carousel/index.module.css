@@ -1,0 +1,21 @@
+.slides {
+	scroll-snap-type: x mandatory;
+	-webkit-overflow-scrolling: touch;
+	display: flex;
+  /* flex-wrap: wrap; */
+	overflow-x: scroll;
+  width: 100%;
+  height: 100%;
+}
+.slides::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  margin-top: 10px;
+}
+.slides::-webkit-scrollbar-thumb {
+  background: rgba(180, 243, 241);
+  border-radius: 10px;
+}
+.slides::-webkit-scrollbar-track {
+  background: transparent;
+}

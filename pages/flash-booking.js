@@ -82,7 +82,7 @@ export default function FlashBooking({ flash }) {
   return (
     <Layout>
       {/* <div className="md:my-10 p-5 w-full sm:w-3/4 md:w-1/2 min-w-lg m-auto"> */}
-      <div className="md:my-10 p-5 w-full m-auto">
+      <div className="md:my-10 p-5 w-full m-auto md:max-w-5xl">
         <h1 className="text-5xl text-lavenderblue font-bold">Flash Booking</h1>
         <form className="grid gap-2.5 my-5" onSubmit={handleSubmit(onSubmit, onInvalid)}>
           <section className="grid md:grid-cols-2 gap-2.5 md:gap-5">
@@ -112,7 +112,7 @@ export default function FlashBooking({ flash }) {
               Design
             </label>
             {/* <div className="max-w-89vw" style={{height: 600}}> */}
-            <div className="max-w-89vw">
+            <div className="md:max-w-89vw">
               <FlashCarousel control={control} flash={flash} />
             </div>
           </section>

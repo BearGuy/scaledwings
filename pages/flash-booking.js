@@ -111,7 +111,8 @@ export default function FlashBooking({ flash }) {
             <label className="text-lg text-white font-bold mb-2.5 md:mb-1 md:flex md:justify-between">
               Design
             </label>
-            <div className="max-w-89vw" style={{height: 600}}>
+            {/* <div className="max-w-89vw" style={{height: 600}}> */}
+            <div className="max-w-89vw">
               <FlashCarousel control={control} flash={flash} />
             </div>
           </section>

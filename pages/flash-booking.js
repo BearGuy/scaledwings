@@ -4,7 +4,9 @@ import { useForm, useController, Controller } from 'react-hook-form';
 import Image from 'next/image';
 import Link from 'next/link';
 import axios from 'axios';
-import Carousel from '../components/Carousel';
+import Grid from '../components/Grid';
+
+import styles from '../components/Content/content.module.css';
 
 export default function FlashBooking({ flash }) {
 	const { register, control, handleSubmit, formState, setValue, watch } = useForm({ mode: "onChange" });
@@ -79,7 +81,8 @@ export default function FlashBooking({ flash }) {
 
   return (
     <Layout>
-      <div className="md:my-10 p-5 w-full sm:w-3/4 md:w-1/2 min-w-lg m-auto">
+      {/* <div className="md:my-10 p-5 w-full sm:w-3/4 md:w-1/2 min-w-lg m-auto"> */}
+      <div className="md:my-10 p-5 w-full m-auto">
         <h1 className="text-5xl text-lavenderblue font-bold">Flash Booking</h1>
         <form className="grid gap-2.5 my-5" onSubmit={handleSubmit(onSubmit, onInvalid)}>
           <section className="grid md:grid-cols-2 gap-2.5 md:gap-5">
@@ -108,7 +111,7 @@ export default function FlashBooking({ flash }) {
             <label className="text-lg text-white font-bold mb-2.5 md:mb-1 md:flex md:justify-between">
               Design
             </label>
-            <div className="max-w-89vw md:max-w-40vw" style={{height: 275}}>
+            <div className="max-w-89vw" style={{height: 600}}>
               <FlashCarousel control={control} flash={flash} />
             </div>
           </section>
@@ -129,7 +132,6 @@ export default function FlashBooking({ flash }) {
           </section>
           <button
             type="submit"
-            // onClick={onSubmit}
             disabled={!formState.isValid}
             className="bg-cerise text-white rounded-md disabled:bg-dustygray disabled:cursor-not-allowed" style={{ padding: `12px 15px`}}
           >
@@ -179,27 +181,32 @@ function FlashCarousel({ control, flash }) {
     defaultValue: "",
   });
 
-  return <Carousel>
+  return <Grid>
     {
       flash.map((img) => {
         const is_selected = value === img.id;
         return (
           <div
-            className={`${is_selected ? `border-cerise border-4` : ``} rounded-md overflow-hidden h-full mr-5 last:mr-0`}
-            style={{scrollSnapAlign: 'start', minWidth: 200}}
+            className={`${is_selected ? `border-cerise border-4` : ``} rounded-md overflow-hidden h-full`}
+            // style={{scrollSnapAlign: 'start', minWidth: 200, minHeight: 275}}
             onClick={() => onChange(img.id)}
           >
-            <Image
-              src={img.url}
-              layout="fixed"
-              height={275}
-              width={200}
-            />
+            {/* <div className={`${styles.item}`}> */}
+              <div className={`${styles.unset_img}`}>
+                <Image
+                  src={img.url}
+                  className={`${styles.custom_img}`}
+                  layout="responsive"
+                  height={250}
+                  width={200}
+                />
+              </div>
+            {/* </div> */}
           </div>
         )
       })
     }
-  </Carousel>
+  </Grid>
 }
 
 export async function getStaticProps() {

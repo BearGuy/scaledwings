@@ -35,7 +35,7 @@ export const SideMenu = ({ hide_menu }) => {
           <div className="cursor-pointer">
             <Link href="/">
               <Image
-                src={`/profile.jpg`}
+                src={`/profile.jpeg`}
                 width={160}
                 height={160}
                 layout={`intrinsic`}

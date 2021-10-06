@@ -9,7 +9,7 @@ export default function About() {
         <p className="text-white mt-3">
           Hi there, I'm Riya 👋  I'm an apprentice tattoo artist and watercolour painter based in Ottawa
         </p>
-        <p className="text-white mt-3">While I'm still an apprentice, I'm already starting to take bookings. You can book with me <Link href="/booking"><span className="text-celeste underline font-bold cursor-pointer">here</span></Link> and be first in line to get a tattoo from me!</p>
+        <p className="text-white mt-3">While I'm still an apprentice, I'm already starting to take bookings. You can book with me <Link href="/flash-booking"><span className="text-celeste underline font-bold cursor-pointer">here</span></Link> and be first in line to get a tattoo from me!</p>
       </div>
     </Layout>
   )

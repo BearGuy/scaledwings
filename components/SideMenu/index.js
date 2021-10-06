@@ -40,6 +40,7 @@ export const SideMenu = ({ hide_menu }) => {
                 height={160}
                 layout={`intrinsic`}
                 objectFit={`cover`}
+                objectPosition={`top`}
               />
             </Link>
           </div>

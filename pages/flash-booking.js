@@ -82,51 +82,82 @@ export default function FlashBooking({ flash }) {
 
   return (
     <Layout>
-      {/* <div className="md:my-10 p-5 w-full sm:w-3/4 md:w-1/2 min-w-lg m-auto"> */}
       <div className="md:my-10 p-5 w-full m-auto md:max-w-5xl">
         <h1 className="text-5xl text-lavenderblue font-bold">Flash Booking</h1>
         <form className="grid gap-2.5 my-5" onSubmit={handleSubmit(onSubmit, onInvalid)}>
-          <section className="grid md:grid-cols-2 gap-2.5 md:gap-5">
-            <div>
-              <label className="text-lg text-white font-bold mb-2.5">First Name</label>
-              <input type="text" {...register("firstName", { required: true })} />
+          <section>
+            <div className="mb-2.5">
+              <h3 className="text-2xl text-white font-bold flex justify-between">Name</h3>
             </div>
-            <div>
-              <label className="text-lg text-white font-bold mb-2.5">Last Name</label>
-              <input type="text" {...register("lastName", { required: true })} />
+            <div className="grid md:grid-cols-2 gap-2.5 md:gap-5">
+              <div>
+                <div className="flex justify-between">
+                  <label className="text-lg text-white font-bold">First Name</label>
+                  <label className="text-white">(required)</label>
+                </div>
+                <input type="text" {...register("firstName", { required: true })} />
+              </div>
+              <div>
+                <div className="flex justify-between">
+                  <label className="text-lg text-white font-bold">Last Name</label>
+                  <label className="text-white">(required)</label>
+                </div>
+                <input type="text" {...register("lastName", { required: true })} />
+              </div>
             </div>
           </section>
-          <section className="grid md:grid-cols-2 gap-2.5 md:gap-5">
-            <div>
-              <label className="text-lg text-white font-bold flex justify-between">
-                Email
-              </label>
-              <input type="text"
-                {...register("email", {
-                  required: true,
-                  // pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-                  message: 'Please enter a valid email'
-                })}
-              />
+          <section >
+            <div className="mb-2.5">
+              <h3 className="text-2xl text-white font-bold flex justify-between">Contact</h3>
             </div>
-            <div>
-              <label className="text-lg text-white font-bold mb-2.5">Instagram (optional)</label>
-              <input type="text" {...register("instagram")} />
+            <div className="grid md:grid-cols-2 gap-2.5 md:gap-5">
+              <div>
+                <div className="flex justify-between">
+                  <label className="text-lg text-white font-bold">Email</label>
+                  <label className="text-white">(required)</label>
+                </div>
+                <input type="text"
+                  {...register("email", {
+                    required: true,
+                    // pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                    message: 'Please enter a valid email'
+                  })}
+                />
+              </div>
+              <div>
+                <label className="text-lg text-white font-bold mb-2.5">Instagram</label>
+                {/* <div className="flex justify-between">
+                  <label className="text-lg text-white font-bold">Email</label>
+                  <label className="text-white">(required)</label>
+                </div> */}
+                <input type="text" {...register("instagram")} />
+              </div>
             </div>
           </section>
           <section>
-            <label className="text-lg text-white font-bold mb-2.5 md:mb-1 md:flex md:justify-between">
+            <div className="mb-2.5">
+              <h3 className="text-2xl text-white font-bold flex justify-between">Tattoo</h3>
+            </div>
+            <div className="flex justify-between mb-2.5 md:mb-1">
+              <label className="text-lg text-white font-bold">Design</label>
+              <label className="text-white">(required)</label>
+            </div>
+            {/* <label className="text-lg text-white font-bold ">
               Design
-            </label>
+            </label> */}
             {/* <div className="max-w-89vw" style={{height: 600}}> */}
             <div className="md:max-w-89vw">
               <FlashCarousel control={control} flash={flash} />
             </div>
           </section>
           <section>
-            <label className="text-lg text-white font-bold mb-2.5 md:mb-1 md:flex md:justify-between">
+            <div className="flex justify-between mb-2.5 md:mb-1">
+              <label className="text-lg text-white font-bold">Placement</label>
+              <label className="text-white">(required)</label>
+            </div>
+            {/* <label className="text-lg text-white font-bold mb-2.5 md:mb-1 md:flex md:justify-between">
               Placement
-            </label>
+            </label> */}
             <div className="grid md:grid-cols-2 gap-5">
               <SelectBox name="body_dir" control={control} boxes={['LEFT', 'RIGHT']} />
               <SelectBox name="body_part" control={control} boxes={['ARM', 'LEG']} />

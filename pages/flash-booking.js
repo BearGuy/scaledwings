@@ -14,7 +14,7 @@ export default function FlashBooking({ flash }) {
   const [isRequesting, setIsRequesting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const onSubmit = async ({ firstName, lastName, email, body_dir, body_part, placement, flash_id }) => {
+  const onSubmit = async ({ firstName, lastName, email, instagram, body_dir, body_part, placement, flash_id }) => {
     setIsRequesting(true);
     const data = {
       "records": [
@@ -23,6 +23,7 @@ export default function FlashBooking({ flash }) {
             "firstName": firstName,
             "lastName": lastName,
             "email": email,
+            "instagram": instagram,
             "size": 'XS',
             "placement": `${body_dir} ${body_part} ${placement}`,
             "flash": [flash_id],
@@ -95,17 +96,23 @@ export default function FlashBooking({ flash }) {
               <input type="text" {...register("lastName", { required: true })} />
             </div>
           </section>
-          <section>
-            <label className="text-lg text-white font-bold flex justify-between">
-              Email
-            </label>
-            <input type="text"
-              {...register("email", {
-                required: true,
-                pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-                message: 'Please enter a valid email'
-              })}
-            />
+          <section className="grid md:grid-cols-2 gap-2.5 md:gap-5">
+            <div>
+              <label className="text-lg text-white font-bold flex justify-between">
+                Email
+              </label>
+              <input type="text"
+                {...register("email", {
+                  required: true,
+                  // pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                  message: 'Please enter a valid email'
+                })}
+              />
+            </div>
+            <div>
+              <label className="text-lg text-white font-bold mb-2.5">Instagram (optional)</label>
+              <input type="text" {...register("instagram")} />
+            </div>
           </section>
           <section>
             <label className="text-lg text-white font-bold mb-2.5 md:mb-1 md:flex md:justify-between">
@@ -188,7 +195,7 @@ function FlashCarousel({ control, flash }) {
         const is_selected = value === img.id;
         return (
           <div
-            className={`${is_selected ? `border-cerise border-4` : ``} rounded-md overflow-hidden h-full`}
+            className={`${is_selected ? `border-cerise border-4` : ``} rounded-md overflow-hidden h-full cursor-pointer`}
             // style={{scrollSnapAlign: 'start', minWidth: 200, minHeight: 275}}
             onClick={() => onChange(img.id)}
           >

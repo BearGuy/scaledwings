@@ -14,36 +14,63 @@ export default function FlashBooking({ flash }) {
   const [isRequesting, setIsRequesting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const onSubmit = async ({ firstName, lastName, email, instagram, body_dir, body_part, placement, flash_id }) => {
+  // const onSubmit = async ({ firstName, lastName, email, instagram, body_dir, body_part, placement, flash_id }) => {
+  const onSubmit = async (params) => {
     setIsRequesting(true);
-    const data = {
-      "records": [
-        {
-          "fields": {
-            "firstName": firstName,
-            "lastName": lastName,
-            "email": email,
-            "instagram": instagram,
-            "size": 'XS',
-            "placement": `${body_dir} ${body_part} ${placement}`,
-            "flash": [flash_id],
-            "status": 'Incoming'
-          }
-        }
-      ]
-    };
 
-    // upload to airtable
-    let results = await axios.post(
-      `https://api.airtable.com/v0/appAE11Y9R7n8jKUn/Bookings`,
-      data,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`
-        }
-      }
-    );
+    // const calendly_results = await axios.post(
+    //   `https://api.calendly.com/scheduling_links`,
+    //   {
+    //     "max_event_count": 1,
+    //     "owner": `https://api.calendly.com/event_types/${process.env.NEXT_PUBLIC_CALENDLY_FLASH_BOOKING_EVENT_UID}`,
+    //     "owner_type": "EventType"
+    //   },
+    //   {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CALENDLY_API_KEY}`
+    //     }
+    //   }
+    // );
+
+    // // get calendly_results.data.resource.booking_url
+    // const { booking_url } = calendly_results.data.resource;
+
+    // const data = {
+    //   "records": [
+    //     {
+    //       "fields": {
+    //         "firstName": firstName,
+    //         "lastName": lastName,
+    //         "email": email,
+    //         "instagram": instagram,
+    //         "size": 'XS',
+    //         "placement": `${body_dir} ${body_part} ${placement}`,
+    //         "flash": [flash_id],
+    //         "status": 'Incoming',
+    //         "booking_url": booking_url
+    //       }
+    //     }
+    //   ]
+    // };
+
+    // // upload to airtable
+    // let results = await axios.post(
+    //   `https://api.airtable.com/v0/appAE11Y9R7n8jKUn/Bookings`,
+    //   data,
+    //   {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`
+    //     }
+    //   }
+    // );
+
+    try {
+      const results = await axios.post('/api/booking', params);
+    } catch(err) {
+      console.log(err)
+    }
 
     setIsRequesting(false);
     setIsSubmitted(true);

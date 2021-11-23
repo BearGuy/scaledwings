@@ -155,9 +155,10 @@ export default function FlashBooking({ flash }) {
             <input type="text" {...register("placement")} />
           </section>
           <section className="mb-2.5">
-            <label className="text-lg text-white font-bold mb-2.5 md:flex md:justify-between">
-              Type
-            </label>
+            <div className="flex justify-between mb-2.5 md:mb-1">
+              <label className="text-lg text-white font-bold">Type</label>
+              <label className="text-white">(required)</label>
+            </div>
             <div className="mt-2">
               <label className="inline-flex items-center">
                 <input type="radio" className="form-radio w-4" name="accountType" value="colour" {...register("type", { required: true }) } />
@@ -178,9 +179,10 @@ export default function FlashBooking({ flash }) {
             </label>
           </section>
           <section className="mb-2.5">
-            <label className="text-xl text-white font-bold mb-2.5 md:flex md:justify-between">
-              Apprentice
-            </label>
+            <div className="flex justify-between mb-2.5 md:mb-1">
+              <label className="text-lg text-white font-bold">Apprentice Acknowledgment</label>
+              <label className="text-white">(required)</label>
+            </div>
             <div>
             <label className="inline-flex items-center">
               <input type="checkbox" className="form-checkbox w-4" {...register('apprentice_agreement', { required: true } )} />

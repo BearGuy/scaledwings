@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { Layout } from '../components/Layout'
 import { useForm, useController, Controller } from 'react-hook-form';
 import Image from 'next/image';
@@ -9,62 +9,22 @@ import Grid from '../components/Grid';
 import styles from '../components/Content/content.module.css';
 
 export default function FlashBooking({ flash }) {
-	const { register, control, handleSubmit, formState, setValue, watch } = useForm({ mode: "onChange" });
+	const { register, control, handleSubmit, formState, getValues, watch } = useForm({ mode: "onChange" });
 
+  const [est_total, setEstTotal] = useState(0)
   const [isRequesting, setIsRequesting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // const onSubmit = async ({ firstName, lastName, email, instagram, body_dir, body_part, placement, flash_id }) => {
   const onSubmit = async (params) => {
+    params = {
+      ...params,
+      flash_id: params.flash.id,
+      price: params.type == 'colour' ? params.flash.colour_price : params.flash.line_work_price,
+    }
+    delete params['flash']
+    console.log({ params })
+
     setIsRequesting(true);
-
-    // const calendly_results = await axios.post(
-    //   `https://api.calendly.com/scheduling_links`,
-    //   {
-    //     "max_event_count": 1,
-    //     "owner": `https://api.calendly.com/event_types/${process.env.NEXT_PUBLIC_CALENDLY_FLASH_BOOKING_EVENT_UID}`,
-    //     "owner_type": "EventType"
-    //   },
-    //   {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CALENDLY_API_KEY}`
-    //     }
-    //   }
-    // );
-
-    // // get calendly_results.data.resource.booking_url
-    // const { booking_url } = calendly_results.data.resource;
-
-    // const data = {
-    //   "records": [
-    //     {
-    //       "fields": {
-    //         "firstName": firstName,
-    //         "lastName": lastName,
-    //         "email": email,
-    //         "instagram": instagram,
-    //         "size": 'XS',
-    //         "placement": `${body_dir} ${body_part} ${placement}`,
-    //         "flash": [flash_id],
-    //         "status": 'Incoming',
-    //         "booking_url": booking_url
-    //       }
-    //     }
-    //   ]
-    // };
-
-    // // upload to airtable
-    // let results = await axios.post(
-    //   `https://api.airtable.com/v0/appAE11Y9R7n8jKUn/Bookings`,
-    //   data,
-    //   {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`
-    //     }
-    //   }
-    // );
 
     try {
       const results = await axios.post('/api/booking', params);
@@ -79,6 +39,14 @@ export default function FlashBooking({ flash }) {
   const onInvalid = (error) => {
     console.log({ error });
   }
+
+  useEffect(() => {
+    let flash = watch('flash')
+    let type = watch('type')
+    if (flash && type) {
+      setEstTotal(type == 'colour' ? flash.colour_price : flash.line_work_price)
+    }
+  }, [watch(['flash', 'type'])])
 
   if (isSubmitted) {
     return (
@@ -106,6 +74,7 @@ export default function FlashBooking({ flash }) {
       </Layout>
     )
   }
+
 
   return (
     <Layout>
@@ -166,7 +135,7 @@ export default function FlashBooking({ flash }) {
               <label className="text-white">(required)</label>
             </div>
             <div className="md:max-w-89vw">
-              <FlashCarousel control={control} flash={flash} />
+              <FlashCarousel control={control} flash={flash} getValues={getValues} />
             </div>
           </section>
           <section>
@@ -184,6 +153,35 @@ export default function FlashBooking({ flash }) {
               Placement Details
             </label>
             <input type="text" {...register("placement")} />
+          </section>
+          <section className="mb-2.5">
+            <label className="text-lg text-white font-bold mb-2.5 md:flex md:justify-between">
+              Type
+            </label>
+            <div className="mt-2">
+              <label className="inline-flex items-center">
+                <input type="radio" className="form-radio w-4" name="accountType" value="colour" {...register("type")} />
+                <span className="ml-2 text-white">Colour</span>
+              </label>
+              <label className="inline-flex items-center ml-6">
+                <input type="radio" className="form-radio w-4" name="accountType" value="line-work" {...register("type")} />
+                <span className="ml-2 text-white">Line-work</span>
+              </label>
+            </div>
+          </section>
+          <section className="mb-2.5">
+            <label className="block">
+              <label className="text-lg text-white font-bold mb-2.5 md:flex md:justify-between">
+                Colour Details
+              </label>
+              <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="Please provide additional information (if applicable)" {...register("description")} ></textarea>
+            </label>
+          </section>
+          <section className="mb-2.5">
+            <label className="text-xl text-white font-bold mb-2.5 md:flex md:justify-between">
+              Est. Total
+            </label>
+            <h2 className="text-celeste font-bold text-4xl">${est_total}</h2>
           </section>
           <button
             type="submit"
@@ -226,37 +224,45 @@ function SelectBox({ name, boxes, control }) {
   </div>
 }
 
-function FlashCarousel({ control, flash }) {
+function FlashCarousel({ control, flash, getValues }) {
   const {
     field: { value, onChange },
   } = useController({
-    name: 'flash_id',
+    name: 'flash',
     control,
     rules: { required: true },
     defaultValue: "",
   });
 
+  console.log(value)
+
+  const onClick = (img) => {
+    const type = getValues('type');
+    onChange({
+      id: img.id,
+      colour_price: img.colour_price,
+      line_work_price: img.line_work_price,
+    })
+  }
+
   return <Grid>
     {
       flash.map((img) => {
-        const is_selected = value === img.id;
+        const is_selected = value?.id === img.id;
         return (
           <div
             className={`${is_selected ? `border-cerise border-4` : ``} rounded-md overflow-hidden h-full cursor-pointer`}
-            // style={{scrollSnapAlign: 'start', minWidth: 200, minHeight: 275}}
-            onClick={() => onChange(img.id)}
+            onClick={() => onClick(img)}
           >
-            {/* <div className={`${styles.item}`}> */}
-              <div className={`${styles.unset_img}`}>
-                <Image
-                  src={img.url}
-                  className={`${styles.custom_img}`}
-                  layout="responsive"
-                  height={250}
-                  width={200}
-                />
-              </div>
-            {/* </div> */}
+            <div className={`${styles.unset_img}`}>
+              <Image
+                src={img.url}
+                className={`${styles.custom_img}`}
+                layout="responsive"
+                height={250}
+                width={200}
+              />
+            </div>
           </div>
         )
       })
@@ -270,7 +276,9 @@ export async function getStaticProps() {
     return {
       id: record.id,
       name: record?.fields?.Name,
-      url: record.fields?.Attachments?.[0].url
+      url: record.fields?.Attachments?.[0].url,
+      colour_price: record.fields?.ColourPrice || null,
+      line_work_price: record.fields?.LineWorkPrice || null,
     }
   })
   .filter((record) => record.name && record.url)

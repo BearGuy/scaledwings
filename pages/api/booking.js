@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default async function handler(req, res) {
   console.log(req.body);
-	const { firstName, lastName, email, instagram, body_dir, body_part, placement, flash_id } = req.body;
+	const { firstName, lastName, email, instagram, body_dir, body_part, placement, flash_id, type, price, description } = req.body;
 
   const calendly_results = await axios.post(
 		`https://api.calendly.com/scheduling_links`,
@@ -34,7 +34,10 @@ export default async function handler(req, res) {
           "placement": `${body_dir} ${body_part} ${placement}`,
           "flash": [flash_id],
           "status": 'Incoming',
-          "booking_url": booking_url
+          "booking_url": booking_url,
+          "type": type,
+          "price": price,
+          "description": description
         }
       }
     ]

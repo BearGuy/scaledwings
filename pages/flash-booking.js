@@ -53,7 +53,7 @@ export default function FlashBooking({ flash }) {
       <Layout>
         <div className="md:my-10 p-5 w-full md:w-1/2 min-w-lg m-auto">
           <p className="text-center text-xl text-lavenderblue font-bold mt-5">
-            Your Request Was Sent, Thank You For Submitting!
+            Your Request Was Sent, Thank You For Submitting! Further Details Will Come Through Email
           </p>
           <div className="text-center">
             <Link href="/">
@@ -176,6 +176,17 @@ export default function FlashBooking({ flash }) {
               </label>
               <textarea className="form-textarea mt-1 block w-full" rows="3" placeholder="Please provide additional information (if applicable)" {...register("description")} ></textarea>
             </label>
+          </section>
+          <section className="mb-2.5">
+            <label className="text-xl text-white font-bold mb-2.5 md:flex md:justify-between">
+              Apprentice
+            </label>
+            <div>
+            <label className="inline-flex items-center">
+              <input type="checkbox" className="form-checkbox w-4" {...register('apprentice_agreement', { required: true } )} />
+              <span className="ml-2 text-white">I acknowledge that I am being tattooed by an apprentice</span>
+            </label>
+            </div>
           </section>
           <section className="mb-2.5">
             <label className="text-xl text-white font-bold mb-2.5 md:flex md:justify-between">

@@ -53,7 +53,7 @@ export default function FlashBooking({ flash }) {
       <Layout>
         <div className="md:my-10 p-5 w-full md:w-1/2 min-w-lg m-auto">
           <p className="text-center text-xl text-lavenderblue font-bold mt-5">
-            Your Request Was Sent! Expect To Hear Back From Me Soon
+            Your Request Was Sent, Thank You For Submitting!
           </p>
           <div className="text-center">
             <Link href="/">
@@ -160,11 +160,11 @@ export default function FlashBooking({ flash }) {
             </label>
             <div className="mt-2">
               <label className="inline-flex items-center">
-                <input type="radio" className="form-radio w-4" name="accountType" value="colour" {...register("type")} />
+                <input type="radio" className="form-radio w-4" name="accountType" value="colour" {...register("type", { required: true }) } />
                 <span className="ml-2 text-white">Colour</span>
               </label>
               <label className="inline-flex items-center ml-6">
-                <input type="radio" className="form-radio w-4" name="accountType" value="line-work" {...register("type")} />
+                <input type="radio" className="form-radio w-4" name="accountType" value="line-work" {...register("type", { required: true }) } />
                 <span className="ml-2 text-white">Line-work</span>
               </label>
             </div>

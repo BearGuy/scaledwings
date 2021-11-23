@@ -19,7 +19,6 @@ export default async function handler(req, res) {
 		}
   );
 
-  // get calendly_results.data.resource.booking_url
   const { booking_url } = calendly_results.data.resource;
 
   const data = {

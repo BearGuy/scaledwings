@@ -165,6 +165,10 @@ export default function FlashBooking({ flash }) {
                 <span className="ml-2 text-white">Colour</span>
               </label>
               <label className="inline-flex items-center ml-6">
+                <input type="radio" className="form-radio w-4" name="accountType" value="shading" {...register("type", { required: true }) } />
+                <span className="ml-2 text-white">Shading</span>
+              </label>
+              <label className="inline-flex items-center ml-6">
                 <input type="radio" className="form-radio w-4" name="accountType" value="line-work" {...register("type", { required: true }) } />
                 <span className="ml-2 text-white">Line-work</span>
               </label>

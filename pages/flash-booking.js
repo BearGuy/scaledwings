@@ -8,6 +8,8 @@ import Grid from '../components/Grid';
 
 import styles from '../components/Content/content.module.css';
 
+import * as ga from '../lib/ga'
+
 export default function FlashBooking({ flash }) {
 	const { register, control, handleSubmit, formState, getValues, watch } = useForm({ mode: "onChange" });
 
@@ -16,6 +18,7 @@ export default function FlashBooking({ flash }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const onSubmit = async (params) => {
+    flash = params.flash;
     params = {
       ...params,
       flash_id: params.flash.id,
@@ -27,7 +30,12 @@ export default function FlashBooking({ flash }) {
     setIsRequesting(true);
 
     try {
-      const results = await axios.post('/api/booking', params);
+      await axios.post('/api/booking', params);
+      ga.event({
+        action: 'submit_form',
+        category: 'Flash Booking',
+        label: flash.name
+      })
     } catch(err) {
       console.log(err)
     }
@@ -241,7 +249,7 @@ function SelectBox({ name, boxes, control }) {
   </div>
 }
 
-function FlashCarousel({ control, flash, getValues }) {
+function FlashCarousel({ control, flash }) {
   const {
     field: { value, onChange },
   } = useController({
@@ -251,14 +259,13 @@ function FlashCarousel({ control, flash, getValues }) {
     defaultValue: "",
   });
 
-  console.log(value)
-
   const onClick = (img) => {
-    const type = getValues('type');
+    const { id, name, colour_price, line_work_price } = img
     onChange({
-      id: img.id,
-      colour_price: img.colour_price,
-      line_work_price: img.line_work_price,
+      id,
+      name,
+      colour_price,
+      line_work_price,
     })
   }
 

@@ -142,7 +142,7 @@ export default function FlashBooking({ flash }) {
               <label className="text-lg text-white font-bold">Design</label>
               <label className="text-white">(required)</label>
             </div>
-            <div className="md:max-w-89vw">
+            <div className="md:max-w-89vw max-h-75vh overflow-scroll">
               <FlashCarousel control={control} flash={flash} getValues={getValues} />
             </div>
           </section>
@@ -238,6 +238,7 @@ function SelectBox({ name, boxes, control }) {
         const is_selected = value === button;
         return (
           <div
+            key={button}
             onClick={() => onChange(button)}
             className={`p-4 border-2 border-celeste rounded-md cursor-pointer ${is_selected ? `bg-celeste text-black` : ``}`}
           >
@@ -275,6 +276,7 @@ function FlashCarousel({ control, flash }) {
         const is_selected = value?.id === img.id;
         return (
           <div
+            key={img.id}
             className={`${is_selected ? `border-cerise border-4` : ``} rounded-md overflow-hidden h-full cursor-pointer`}
             onClick={() => onClick(img)}
           >
@@ -303,9 +305,10 @@ export async function getStaticProps() {
       url: record.fields?.Attachments?.[0].url,
       colour_price: record.fields?.ColourPrice || null,
       line_work_price: record.fields?.LineWorkPrice || null,
+      display: record.fields?.Display
     }
   })
-  .filter((record) => record.name && record.url)
+  .filter((record) => record.name && record.url && record.display)
 
   return {
     props: { flash: records }, // will be passed to the page component as props

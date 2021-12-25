@@ -80,7 +80,10 @@ module.exports = {
         '3/4': '75%',
         '40vw': '40vw',
         '89vw': '89vw',
-       }
+      },
+      maxHeight: {
+        '75vh': '75vh'
+      }
     },
     scale: {
       '250': '2.5',

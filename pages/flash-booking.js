@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import { Layout } from '../components/Layout'
-import { useForm, useController, Controller } from 'react-hook-form';
+import { useForm, useController } from 'react-hook-form';
 import Image from 'next/image';
 import Link from 'next/link';
 import axios from 'axios';
@@ -10,12 +10,15 @@ import styles from '../components/Content/content.module.css';
 
 import * as ga from '../lib/ga'
 
+const CALENDLY_BOOKING_URL = 'CALENDLY_BOOKING_URL'
+
 export default function FlashBooking({ flash }) {
 	const { register, control, handleSubmit, formState, getValues, watch } = useForm({ mode: "onChange" });
 
   const [est_total, setEstTotal] = useState(0)
   const [isRequesting, setIsRequesting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [booking_url, setBookingUrl] = useState('');
 
   const onSubmit = async (params) => {
     flash = params.flash;
@@ -25,12 +28,15 @@ export default function FlashBooking({ flash }) {
       price: params.type == 'colour' ? params.flash.colour_price : params.flash.line_work_price,
     }
     delete params['flash']
-    console.log({ params })
 
     setIsRequesting(true);
 
     try {
-      await axios.post('/api/booking', params);
+      let response = await axios.post('/api/booking', params);
+
+      localStorage.setItem("CALENDLY_BOOKING_URL", response.data.booking_url)
+      setBookingUrl(response.data.booking_url)
+
       ga.event({
         action: 'submit_form',
         category: 'Flash Booking',
@@ -49,6 +55,13 @@ export default function FlashBooking({ flash }) {
   }
 
   useEffect(() => {
+    let booking_url = localStorage.getItem(CALENDLY_BOOKING_URL)
+    if (booking_url) {
+      setBookingUrl(booking_url)
+    }
+  }, [])
+
+  useEffect(() => {
     let flash = watch('flash')
     let type = watch('type')
     if (flash && type) {
@@ -56,17 +69,20 @@ export default function FlashBooking({ flash }) {
     }
   }, [watch(['flash', 'type'])])
 
-  if (isSubmitted) {
+  const onBookingURLClick = () => {
+    localStorage.removeItem(CALENDLY_BOOKING_URL)
+    window.location.href = booking_url;
+  }
+
+  if (isSubmitted || (booking_url && booking_url != '')) {
     return (
       <Layout>
         <div className="md:my-10 p-5 w-full md:w-1/2 min-w-lg m-auto">
           <p className="text-center text-xl text-lavenderblue font-bold mt-5">
-            Your Request Was Sent, Thank You For Submitting! Further Details Will Come Through Email
+            Your Request Was Sent, Thank You For Submitting!
           </p>
           <div className="text-center">
-            <Link href="/">
-              <p className="text-xl text-celeste font-bold mt-5 underline cursor-pointer">Return to Gallery</p>
-            </Link>
+            <p onClick={onBookingURLClick} className="text-xl text-celeste font-bold mt-5 underline cursor-pointer">Click Here to Finish Booking Your Tattoo</p>
           </div>
         </div>
       </Layout>

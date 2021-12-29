@@ -54,5 +54,10 @@ export default async function handler(req, res) {
     }
   );
 
-	res.status(201).json({ message: "Booking created successfully!" });
+	res
+    .status(201)
+    .json({
+      message: "Booking created successfully!",
+      booking_url: `${booking_url}?email=${email}&name=${firstName}%20${lastName}`,
+    });
 }

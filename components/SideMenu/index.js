@@ -27,7 +27,7 @@ export const SideMenu = ({ hide_menu }) => {
             <ul>
               <Link href="/about"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer p-2`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>About Me</li></Link>
               <Link href="/"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer p-2`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>Gallery</li></Link>
-              <Link href="/flash-booking"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer p-2`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>Booking</li></Link>
+              {/* <Link href="/flash-booking"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer p-2`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>Booking</li></Link> */}
             </ul>
           </div>
         }
@@ -54,7 +54,7 @@ export const SideMenu = ({ hide_menu }) => {
         <ul>
           <Link href="/about"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>About Me</li></Link>
           <Link href="/"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>Gallery</li></Link>
-          <Link href="/flash-booking"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>Booking</li></Link>
+          {/* <Link href="/flash-booking"><li className={`text-white text-md mb-2.5 underline text-center hover:text-lavenderblue cursor-pointer`} style={{ textDecorationColor: `#CCCFFF`, textDecorationStyle: `wavy`, fontSize: 20 }}>Booking</li></Link> */}
         </ul>
         <div className="flex justify-center mt-10">
           <Link href="https://instagram.com/scaledwings">

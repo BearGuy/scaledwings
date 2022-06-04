@@ -32,7 +32,7 @@ export default function FlashBooking({ flash }) {
     setIsRequesting(true);
 
     try {
-      let response = await axios.post('/api/booking', params);
+      let response = await axios.post('/api/flash-booking', params);
 
       localStorage.setItem("CALENDLY_BOOKING_URL", response.data.booking_url)
       setBookingUrl(response.data.booking_url)

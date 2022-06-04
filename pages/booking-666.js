@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link'
 import { Layout } from '../components/Layout'
+import { useForm, useController } from 'react-hook-form';
 import Dropzone from 'react-dropzone'
 import { initializeApp } from "firebase/app"
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -21,6 +22,7 @@ const PER_HOUR_COST = 100; // in USD
 */
 
 export default function Booking() {
+  const { register, control, handleSubmit, formState, getValues, watch } = useForm({ mode: "onChange" });
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -144,6 +146,8 @@ export default function Booking() {
     setIsSubmitted(true);
   }
 
+  const onInvalid = () => {}
+
   const displayDropzoneContent = (isDragActive, isDragAccept, isDragReject) => {
     if (isDragActive) {
       return <p className="text-white">Drop them here!</p>
@@ -194,15 +198,15 @@ export default function Booking() {
     <Layout>
       <div className="md:my-10 p-5 w-full md:w-1/2 min-w-lg m-auto">
         <h1 className="text-5xl text-lavenderblue font-bold">Tattoo Booking</h1>
-        <form className="grid gap-2.5 my-5">
+        <form className="grid gap-2.5 my-5" onSubmit={handleSubmit(onSubmit, onInvalid)} >
           <section className="grid md:grid-cols-2 gap-2.5 md:gap-5">
             <div>
               <label className="text-lg text-white font-bold mb-2.5">First Name</label>
-              <input type="text" onChange={(e) => setFirstName(e.target.value)} />
+              <input type="text" {...register("firsttName", { required: true })} />
             </div>
             <div>
               <label className="text-lg text-white font-bold mb-2.5">Last Name</label>
-              <input type="text" onChange={(e) => setLastName(e.target.value)} />
+              <input type="text" {...register("lastName", { required: true })} />
             </div>
           </section>
           <section>
@@ -214,11 +218,16 @@ export default function Booking() {
                 : null
               }
             </label>
-            <input className={`${isInvalidEmail ? `border-2 border-imperialred` : ``}`} type="text" onChange={(e) => setEmail(e.target.value)} />
+            <input
+              type="text"
+              {...register("email", { required: true })}
+              onChange={(e) => setEmail(e.target.value)}
+              className={`${isInvalidEmail ? `border-2 border-imperialred` : ``}`}
+            />
           </section>
           <section>
             <label className="text-lg text-white font-bold mb-2.5">Body Placement (e.g. back, shoulder, wrist)</label>
-            <input type="text" onChange={(e) => setPlacement(e.target.value)} />
+            <input type="text" {...register("placement", { required: true })} />
           </section>
           <section>
             <label className="text-lg text-white font-bold mb-2.5 md:mb-1 md:flex md:justify-between">
